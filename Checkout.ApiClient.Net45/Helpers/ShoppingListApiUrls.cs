@@ -10,10 +10,10 @@
             _shoppingListGetUrl = null;
         }
 
-        public static string ShoppingListGet
+        public static string ShoppingListGetDelete
             => _shoppingListGetUrl ?? (_shoppingListGetUrl = string.Concat(AppSettings.BaseApiUri, "/ShoppingList{0}"));
 
-        public static string ShoppingListPost
+        public static string ShoppingListPostPut
             => _shoppingListPostUrl ?? (_shoppingListPostUrl = string.Concat(AppSettings.BaseApiUri, "/ShoppingList/{0}/{1}"));
     }
 }

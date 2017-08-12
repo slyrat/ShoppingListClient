@@ -20,7 +20,15 @@ namespace Tests.ShoppingListService
         {
             APIClient client = new APIClient();
             this.ShoppingListService.AddDrink("test", 4);
+            this.ShoppingListService.AddDrink("Aspalls", 40);
             var result = this.ShoppingListService.GetShoppingList(string.Empty);
+            var testResult = this.ShoppingListService.GetShoppingList("test");
+
+            this.ShoppingListService.UpdateDrink("test", 5);
+            // take 5 off
+            this.ShoppingListService.UpdateDrink("Aspalls", 35);
+
+            this.ShoppingListService.DeleteDrink("test");
         }
     }
 }
