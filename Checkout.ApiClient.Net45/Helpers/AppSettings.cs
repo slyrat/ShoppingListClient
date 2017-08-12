@@ -100,7 +100,8 @@ namespace Checkout
                         _baseApiUri = _sandboxUrl;
                         break;
                     case CheckoutEnvironment.LocalHost:
-                        _baseApiUri = 
+                        _baseApiUri = _localHostUrl;
+                        break;
                 };
                 _environment = value;
                 ApiUrls.ResetApiUrls();
