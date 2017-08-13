@@ -8,7 +8,15 @@ namespace Checkout.ApiServices.ShoppingList
     {
         public HttpResponse<List<Drink>> GetShoppingList(string name)
         {
-            var getShoppingListUri = string.Format(ShoppingListApiUrls.ShoppingListGetDelete, !string.IsNullOrEmpty(name) ? "/" + name : "");
+            var getShoppingListUri = string.Format(ShoppingListApiUrls.ShoppingListGetDelete, name);
+            getShoppingListUri = getShoppingListUri.TrimEnd('/');
+
+            return new ApiHttpClient().GetRequest<List<Drink>>(getShoppingListUri, null);
+        }
+
+        public HttpResponse<List<Drink>> GetEntireShoppingList(int pageSize = 0, int page = 0, string sortBy = null, bool sortAscending = true)
+        {
+            var getShoppingListUri = string.Format(ShoppingListApiUrls.ShoppingListGetAll, pageSize, page, sortBy, sortAscending);
             return new ApiHttpClient().GetRequest<List<Drink>>(getShoppingListUri, null);
         }
 
@@ -26,7 +34,7 @@ namespace Checkout.ApiServices.ShoppingList
 
         public HttpResponse<OkResponse> DeleteDrink(string name)
         {
-            var deleteShoppingListUri = string.Format(ShoppingListApiUrls.ShoppingListGetDelete, "/" + name);
+            var deleteShoppingListUri = string.Format(ShoppingListApiUrls.ShoppingListGetDelete, name);
             return new ApiHttpClient().DeleteRequest<OkResponse>(deleteShoppingListUri, null);
         }
     }
